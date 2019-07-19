@@ -31,20 +31,19 @@ public class Client {
 		StaticCodeAnalyzer findbugsAnalyzer = new FindbugsStaticCodeAnalyzer(findbugsSourcePath, FindbugsOutputPath, optionsMap);
 
 		analyzers.add(pmdAnalyzer);
-		//analyzers.add(findbugsAnalyzer);
+		analyzers.add(findbugsAnalyzer);
 		
+		ProcessBuilder pb = new ProcessBuilder();
+		Map<String, String> envMap = pb.environment();
+		String path = envMap.get("Path");
+		path += "../static-code-analyzers/pmd/bin;";
+		path += "../static-code-analyzers/findbugs/bin;";
+			
+		envMap.put("Path", path);
 		
 		for (StaticCodeAnalyzer analyzer : analyzers) {
 
-			ProcessBuilder pb = new ProcessBuilder(analyzer.getCommand());
-			Map<String, String> envMap = pb.environment();
-
-			String path = envMap.get("Path");
-			path += "../static-code-analyzers/pmd/bin;";
-			path += "../static-code-analyzers/findbugs/bin;";
-				
-			envMap.put("Path", path);
-			
+			pb.command(analyzer.getCommand());
 			Process process = pb.start();
 			process.waitFor();
 			
