@@ -15,7 +15,7 @@ single developer friendly document.
 
 # Addition of new static code analyzers
 - The binaries for the code analyzers are stored in static-code-analyzers and the path to those should be added while using them
-- New tools can be easily added to the project by extending from StaticAnalysisSummarizer abstract class
+- New tools can be easily added to the project by extending from StaticCodeAnalyzer abstract class
 
 
 
