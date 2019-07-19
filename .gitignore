@@ -1,0 +1,4 @@
+.metadata
+static-code-analyzers/*
+!static-code-analyzers/.gitkeep
+bin/
