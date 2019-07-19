@@ -19,7 +19,6 @@ import org.xml.sax.SAXException;
 
 public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
-	
 	/**
 	 * 
 	 * @param sourceCodePath - PMD expects src of project as input
@@ -40,33 +39,34 @@ public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
 	public void parseXML() throws ParserConfigurationException, SAXException, IOException {
 		try {
-			System.setOut(new PrintStream(new FileOutputStream("../reports/finalreport.txt")));
+			System.setOut(new PrintStream(new FileOutputStream("../reports/pmd_report.csv")));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
 		DocumentBuilder builder = factory.newDocumentBuilder();
+		System.out.println("PMD result");
+		System.out.println("Package," + "Classname," + "Startline," + "Endline," + "Error");
 		Document doc = builder.parse("../reports/report1.xml");
 		NodeList fileList = doc.getElementsByTagName("file");
-		
+
 		for (int i = 0; i < fileList.getLength(); i++) {
 			Node p = fileList.item(i);
 			if (p.getNodeType() == Node.ELEMENT_NODE) {
 				Element file = (Element) p;
-				String name = file.getAttribute("name");
+
 				NodeList violationList = file.getChildNodes();
 				for (int j = 0; j < violationList.getLength(); j++) {
 					Node n = violationList.item(j);
 					if (n.getNodeType() == Node.ELEMENT_NODE) {
 						Element violation = (Element) n;
-						System.out.print(name + ",");
-						String beginline = violation.getAttribute("beginline");
-						System.out.print(beginline + ",");
+						System.out.print(violation.getAttribute("package") + ",");
+						System.out.print(violation.getAttribute("class") + ",");
+						System.out.print(violation.getAttribute("beginline") + ",");
 						System.out.print(violation.getAttribute("endline") + ",");
-						System.out.print(violation.getTextContent());
+						System.out.print(violation.getTextContent()+ ",");
 						System.out.println();
 					}
 				}
