@@ -1,5 +1,0 @@
-Findbugs Results
-Type,Category,Classname,Startline,Endline
-DM_DEFAULT_ENCODING,I18N,java.io.PrintStream,,,
-DM_DEFAULT_ENCODING,I18N,java.io.PrintStream,,,
-IL_INFINITE_LOOP,CORRECTNESS,staticcodeanalysis.SampleCode,8,8,
