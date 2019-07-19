@@ -24,6 +24,6 @@ public abstract class StaticCodeAnalyzer {
 	
 	public abstract String[] getCommand();
 	
-	public abstract void parseXML() throws ParserConfigurationException, SAXException, IOException;
+	public abstract void parseXMLToCSV() throws ParserConfigurationException, SAXException, IOException;
 	
 }

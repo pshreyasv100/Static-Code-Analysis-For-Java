@@ -37,7 +37,7 @@ public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 		return command;
 	}
 
-	public void parseXML() throws ParserConfigurationException, SAXException, IOException {
+	public void parseXMLToCSV() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			System.setOut(new PrintStream(new FileOutputStream("../reports/pmd_report.csv")));
 		} catch (FileNotFoundException e) {

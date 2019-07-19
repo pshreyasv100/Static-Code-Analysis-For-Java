@@ -47,7 +47,7 @@ public class Client {
 			Process process = pb.start();
 			process.waitFor();
 			
-			analyzer.parseXML();
+			analyzer.parseXMLToCSV();
 		}
 	}
 
