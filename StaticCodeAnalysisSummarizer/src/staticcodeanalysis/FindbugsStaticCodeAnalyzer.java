@@ -16,5 +16,6 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer{
 		return command;
 	}
 	
+	
 
 }

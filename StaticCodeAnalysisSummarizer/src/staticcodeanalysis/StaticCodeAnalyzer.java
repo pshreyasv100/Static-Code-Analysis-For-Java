@@ -1,6 +1,11 @@
 package staticcodeanalysis;
 
+import java.io.IOException;
 import java.util.Map;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 public abstract class StaticCodeAnalyzer {
 	
@@ -18,5 +23,7 @@ public abstract class StaticCodeAnalyzer {
 	
 	
 	public abstract String[] getCommand();
+	
+	public abstract void parseXML() throws ParserConfigurationException, SAXException, IOException;
 	
 }

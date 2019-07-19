@@ -6,17 +6,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 public class Client {
 
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
 
-		String pmdSourcePath = "C:\\bootcamp\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\StaticCodeAnalysisSummarizer\\src";
+		String pmdSourcePath = "C:\\Temp\\a\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\src";
 
 		// Findbugs takes java project path as input for analysing
-		String findbugsSourcePath = "C:\\bootcamp\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\StaticCodeAnalysisSummarizer";
+		String findbugsSourcePath = "C:\\Temp\\a\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer";
 
-		String pmdOutputPath = "C:\\bootcamp\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\reports\\report1.xml";
-		String FindbugsOutputPath = "C:\\bootcamp\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\reports\\report2.xml";
+		String pmdOutputPath = "C:\\Temp\\a\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\reports\\report1.xml";
+		String FindbugsOutputPath = "C:\\Temp\\a\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\reports\\report2.xml";
 
 		Map<String, String> optionsMap = new HashMap<String, String>();
 		optionsMap.put("outputFormat", "xml");
@@ -27,7 +31,7 @@ public class Client {
 		StaticCodeAnalyzer findbugsAnalyzer = new FindbugsStaticCodeAnalyzer(findbugsSourcePath, FindbugsOutputPath, optionsMap);
 
 		analyzers.add(pmdAnalyzer);
-		analyzers.add(findbugsAnalyzer);
+		//analyzers.add(findbugsAnalyzer);
 		
 		for (StaticCodeAnalyzer analyzer : analyzers) {
 
@@ -35,13 +39,16 @@ public class Client {
 			Map<String, String> envMap = pb.environment();
 
 			String path = envMap.get("Path");
-			path += "C:\\bootcamp\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\static-code-analyzers\\findbugs\\bin;";
-			path += "C:\\bootcamp\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\static-code-analyzers\\pmd\\bin;";
+			path += "C:\\Temp\\a\\bootcamp-casestudy-1\\static-code-analyzers\\findbugs-3.0.1\\bin;";
+			path += "C:\\Temp\\a\\bootcamp-casestudy-1\\static-code-analyzers\\pmd-bin-6.16.0\\bin;";
 				
 			envMap.put("Path", path);
 			
 			Process process = pb.start();
 			process.waitFor();
+			
+			analyzer.parseXML();
+			
 		}
 	}
 
