@@ -14,13 +14,13 @@ public class Client {
 
 	public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
 
-		String pmdSourcePath = "C:\\Temp\\a\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\src";
+		String pmdSourcePath = "./src";
 
 		// Findbugs takes java project path as input for analysing
-		String findbugsSourcePath = "C:\\Temp\\a\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer";
+		String findbugsSourcePath = ".";
 
-		String pmdOutputPath = "C:\\Temp\\a\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\reports\\report1.xml";
-		String FindbugsOutputPath = "C:\\Temp\\a\\bootcamp-casestudy-1\\StaticCodeAnalysisSummarizer\\reports\\report2.xml";
+		String pmdOutputPath = "../reports/report1.xml";
+		String FindbugsOutputPath = "../reports/report2.xml";
 
 		Map<String, String> optionsMap = new HashMap<String, String>();
 		optionsMap.put("outputFormat", "xml");
@@ -33,14 +33,15 @@ public class Client {
 		analyzers.add(pmdAnalyzer);
 		//analyzers.add(findbugsAnalyzer);
 		
+		
 		for (StaticCodeAnalyzer analyzer : analyzers) {
 
 			ProcessBuilder pb = new ProcessBuilder(analyzer.getCommand());
 			Map<String, String> envMap = pb.environment();
 
 			String path = envMap.get("Path");
-			path += "C:\\Temp\\a\\bootcamp-casestudy-1\\static-code-analyzers\\findbugs-3.0.1\\bin;";
-			path += "C:\\Temp\\a\\bootcamp-casestudy-1\\static-code-analyzers\\pmd-bin-6.16.0\\bin;";
+			path += "../static-code-analyzers/pmd/bin;";
+			path += "../static-code-analyzers/findbugs/bin;";
 				
 			envMap.put("Path", path);
 			
@@ -48,7 +49,6 @@ public class Client {
 			process.waitFor();
 			
 			analyzer.parseXML();
-			
 		}
 	}
 

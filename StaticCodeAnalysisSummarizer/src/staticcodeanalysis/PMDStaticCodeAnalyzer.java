@@ -19,6 +19,13 @@ import org.xml.sax.SAXException;
 
 public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
+	
+	/**
+	 * 
+	 * @param sourceCodePath - PMD expects src of project as input
+	 * @param resultsPath
+	 * @param optionsMap
+	 */
 	public PMDStaticCodeAnalyzer(String sourceCodePath, String resultsPath, Map<String, String> optionsMap) {
 		super(sourceCodePath, resultsPath, optionsMap);
 	}
@@ -33,7 +40,7 @@ public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
 	public void parseXML() throws ParserConfigurationException, SAXException, IOException {
 		try {
-			System.setOut(new PrintStream(new FileOutputStream("finalreport.csv")));
+			System.setOut(new PrintStream(new FileOutputStream("../reports/finalreport.txt")));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
