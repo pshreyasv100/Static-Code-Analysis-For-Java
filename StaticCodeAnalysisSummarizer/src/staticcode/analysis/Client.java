@@ -1,4 +1,4 @@
-package staticcodeanalysis;
+package staticcode.analysis;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Client {
 		String findbugsSourcePath = ".";
 
 		String pmdOutputPath = "../reports/report1.xml";
-		String FindbugsOutputPath = "../reports/report2.xml";
+		String findbugsOutputPath = "../reports/report2.xml";
 
 		Map<String, String> optionsMap = new HashMap<String, String>();
 		optionsMap.put("outputFormat", "xml");
@@ -28,7 +28,7 @@ public class Client {
 		List<StaticCodeAnalyzer> analyzers = new ArrayList<StaticCodeAnalyzer>();
 
 		StaticCodeAnalyzer pmdAnalyzer = new PMDStaticCodeAnalyzer(pmdSourcePath, pmdOutputPath, optionsMap);
-		StaticCodeAnalyzer findbugsAnalyzer = new FindbugsStaticCodeAnalyzer(findbugsSourcePath, FindbugsOutputPath, optionsMap);
+		StaticCodeAnalyzer findbugsAnalyzer = new FindbugsStaticCodeAnalyzer(findbugsSourcePath, findbugsOutputPath, optionsMap);
 
 		analyzers.add(pmdAnalyzer);
 		analyzers.add(findbugsAnalyzer);

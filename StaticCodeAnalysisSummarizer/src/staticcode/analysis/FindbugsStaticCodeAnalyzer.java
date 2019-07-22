@@ -1,4 +1,4 @@
-package staticcodeanalysis;
+package staticcode.analysis;
 
 import java.io.IOException;
 import java.util.Map;
@@ -18,6 +18,9 @@ import org.xml.sax.SAXException;
 
 public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
+	
+	public static final String CSV_OUTPUT_PATH = "../reports/findbugs_report.csv";
+	
 	/**
 	 * 
 	 * @param sourceCodePath - findbugs expects project path
@@ -40,7 +43,7 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 	public void parseXMLToCSV() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
-			System.setOut(new PrintStream(new FileOutputStream("../reports/findbugs_report.csv")));
+			System.setOut(new PrintStream(new FileOutputStream(CSV_OUTPUT_PATH)));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

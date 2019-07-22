@@ -1,23 +1,20 @@
 PMD result
 Package,Classname,Startline,Endline,Error
-staticcodeanalysis,Client,13,54,
+staticcode.analysis,Client,13,54,
 All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
 ,
-staticcodeanalysis,Client,23,23,
-The local variable name 'FindbugsOutputPath' doesn't match '[a-z][a-zA-Z0-9]*'
-,
-staticcodeanalysis,FindbugsStaticCodeAnalyzer,36,36,
+staticcode.analysis,FindbugsStaticCodeAnalyzer,39,39,
 Consider simply returning the value vs storing it in local variable 'command'
 ,
-staticcodeanalysis,PMDStaticCodeAnalyzer,37,37,
+staticcode.analysis,PMDStaticCodeAnalyzer,41,41,
 Consider simply returning the value vs storing it in local variable 'command'
 ,
-staticcodeanalysis,SampleCode,3,18,
+staticcode.analysis,SampleCode,3,18,
 All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
 ,
-staticcodeanalysis,SampleCode,8,10,
+staticcode.analysis,SampleCode,8,10,
 Avoid empty while statements
 ,
-staticcodeanalysis,SampleCode,12,12,
+staticcode.analysis,SampleCode,12,12,
 Avoid unused local variables such as 'j'.
 ,

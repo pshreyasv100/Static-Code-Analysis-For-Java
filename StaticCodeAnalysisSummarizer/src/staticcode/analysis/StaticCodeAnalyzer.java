@@ -1,4 +1,4 @@
-package staticcodeanalysis;
+package staticcode.analysis;
 
 import java.io.IOException;
 import java.util.Map;

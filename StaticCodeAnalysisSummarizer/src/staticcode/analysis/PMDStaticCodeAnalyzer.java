@@ -1,4 +1,4 @@
-package staticcodeanalysis;
+package staticcode.analysis;
 
 import java.util.Map;
 
@@ -19,6 +19,10 @@ import org.xml.sax.SAXException;
 
 public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
+	
+	public static final String CSV_OUTPUT_PATH = "../reports/pmd_report.csv";
+	
+	
 	/**
 	 * 
 	 * @param sourceCodePath - PMD expects src of project as input
@@ -39,7 +43,7 @@ public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
 	public void parseXMLToCSV() throws ParserConfigurationException, SAXException, IOException {
 		try {
-			System.setOut(new PrintStream(new FileOutputStream("../reports/pmd_report.csv")));
+			System.setOut(new PrintStream(new FileOutputStream(CSV_OUTPUT_PATH)));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
