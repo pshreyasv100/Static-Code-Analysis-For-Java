@@ -31,6 +31,7 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 		super(sourceCodePath, resultsPath, optionsMap);
 	}
 
+
 	@Override
 	public String[] getCommand() {
 
@@ -43,6 +44,7 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 	public void parseXMLToCSV() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
+			
 			System.setOut(new PrintStream(new FileOutputStream(CSV_OUTPUT_PATH)));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -55,6 +57,7 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 		NodeList fileList = doc.getElementsByTagName("BugInstance");
 		System.out.println("Findbugs Results");
 		System.out.println("Type," + "Category," + "Classname," + "Startline," + "Endline");
+		
 		for (int i = 0; i < fileList.getLength(); i++) {
 			Node p = fileList.item(i);
 			if (p.getNodeType() == Node.ELEMENT_NODE) {

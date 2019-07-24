@@ -3,7 +3,7 @@ Package,Classname,Startline,Endline,Error
 staticcode.analysis,Client,13,54,
 All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
 ,
-staticcode.analysis,FindbugsStaticCodeAnalyzer,39,39,
+staticcode.analysis,FindbugsStaticCodeAnalyzer,40,40,
 Consider simply returning the value vs storing it in local variable 'command'
 ,
 staticcode.analysis,PMDStaticCodeAnalyzer,41,41,
@@ -17,4 +17,10 @@ Avoid empty while statements
 ,
 staticcode.analysis,SampleCode,12,12,
 Avoid unused local variables such as 'j'.
+,
+staticcode.analysis.test,FindbugsStaticCodeAnalyzerTest,3,3,
+Avoid unused imports such as 'org.junit.jupiter.api.Assertions'
+,
+staticcode.analysis.test,FindbugsStaticCodeAnalyzerTest,27,27,
+Avoid unused local variables such as 'instance'.
 ,
