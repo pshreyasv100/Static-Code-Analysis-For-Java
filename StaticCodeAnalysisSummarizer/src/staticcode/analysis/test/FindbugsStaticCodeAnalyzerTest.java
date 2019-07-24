@@ -1,46 +1,63 @@
 package staticcode.analysis.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Test;
+import org.xml.sax.SAXException;
 
 import staticcode.analysis.FindbugsStaticCodeAnalyzer;
 import staticcode.analysis.StaticCodeAnalyzer;
 
-class FindbugsStaticCodeAnalyzerTest {
-
+public class FindbugsStaticCodeAnalyzerTest {
 	
-	StaticCodeAnalyzer instance;
 	
-	@BeforeEach
-	void setUp() throws Exception {
-		
+	@Test
+	public void testGetCommand() {
 		String findbugsSourcePath = ".";
-		String findbugsOutputPath = "../reports/report2.xml";
+		String findbugsOutputPath = "../reports/findbugs_report.xml";
 		Map<String, String> optionsMap = new HashMap<String, String>();
 		optionsMap.put("outputFormat", "xml");
 		StaticCodeAnalyzer instance =  new FindbugsStaticCodeAnalyzer(findbugsSourcePath, findbugsOutputPath, optionsMap);
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	//	instance = null;
-	}
-
-	@Test
-	void testGetCommand() {
-		String expectedCommand = "cmd" + "/c" + "findbugs" + "-textui" + "-output" + "../reports/report2.xml" + "xml" + ".";
-		assertEquals(expectedCommand, instance.getCommand());
+		
+		String[] expectedCommand = {"cmd" , "/c" , "findbugs" , "-textui" , "-output" , "../reports/findbugs_report.xml" , "xml" , "."};
+		String[] actualCommand = instance.getCommand();
+		assertArrayEquals(expectedCommand, actualCommand);
 	}
 
 	@Test
-	void testParseXMLToCSV() {
-		fail("Not yet implemented");
+	public void testParseXMLToCSV() throws ParserConfigurationException, SAXException, IOException, InterruptedException {
+		
+		String findbugsSourcePath = ".";
+		String findbugsOutputPath = "../reports/findbugs_report.xml";
+		Map<String, String> optionsMap = new HashMap<String, String>();
+		optionsMap.put("outputFormat", "xml");
+		StaticCodeAnalyzer instance =  new FindbugsStaticCodeAnalyzer(findbugsSourcePath, findbugsOutputPath, optionsMap);
+		
+		ProcessBuilder pb = new ProcessBuilder();
+		Map<String, String> envMap = pb.environment();
+		String path = envMap.get("Path");
+		path += "../static-code-analyzers/pmd/bin;";
+		path += "../static-code-analyzers/findbugs/bin;";
+			
+		pb.command(instance.getCommand());
+		Process process = pb.start();
+		process.waitFor();
+		
+		instance.parseXMLToCSV();
+		
+		boolean check = new File("../reports/", "findbugs_reports.csv").exists();
+		
+		//File f = new File("../reports/findbugs_reports.csv");
+		assert(check);
+		
+		
 	}
 
 }

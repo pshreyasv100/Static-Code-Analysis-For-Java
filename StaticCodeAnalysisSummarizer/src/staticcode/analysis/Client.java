@@ -19,8 +19,8 @@ public class Client {
 		// Findbugs takes java project path as input for analysing
 		String findbugsSourcePath = ".";
 
-		String pmdOutputPath = "../reports/report1.xml";
-		String findbugsOutputPath = "../reports/report2.xml";
+		String pmdOutputPath = "../reports/pmd_report.xml";
+		String findbugsOutputPath = "../reports/findbugs_report.xml";
 
 		Map<String, String> optionsMap = new HashMap<String, String>();
 		optionsMap.put("outputFormat", "xml");

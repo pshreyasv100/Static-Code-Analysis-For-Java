@@ -53,28 +53,29 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse("../reports/report2.xml");
-		NodeList fileList = doc.getElementsByTagName("BugInstance");
+		Document doc = builder.parse("../reports/findbugs_report.xml");
+		NodeList allBugs = doc.getElementsByTagName("BugInstance");
 		System.out.println("Findbugs Results");
 		System.out.println("Type," + "Category," + "Classname," + "Startline," + "Endline");
 		
-		for (int i = 0; i < fileList.getLength(); i++) {
-			Node p = fileList.item(i);
-			if (p.getNodeType() == Node.ELEMENT_NODE) {
-				Element file = (Element) p;
-				System.out.print(file.getAttribute("type") + ",");
-				System.out.print(file.getAttribute("category") + ",");
-				NodeList violationList = file.getChildNodes();
+		for (int i = 0; i < allBugs.getLength(); i++) {
+			Node bugInstance = allBugs.item(i);
+			if (bugInstance.getNodeType() == Node.ELEMENT_NODE) {
+				Element bug = (Element) bugInstance;
+				System.out.print(bug.getAttribute("type") + ",");
+				System.out.print(bug.getAttribute("category") + ",");
+				NodeList bugInfo = bug.getChildNodes();
 
-				Node n = violationList.item(5);
-				if (n.getNodeType() == Node.ELEMENT_NODE) {
-					Element violation = (Element) n;
+				for(int j=0; j < bugInfo.getLength(); j++) {
 					
-					System.out.print(violation.getAttribute("classname") + ",");
-					System.out.print(violation.getAttribute("start") + ",");
-					System.out.print(violation.getAttribute("end") + ",");
-					System.out.println();
+					if(bugInfo.item(j).getNodeName().equals("SourceLine")) {
+						System.out.print(((Element) bugInfo.item(j)).getAttribute("classname") + ",");
+						System.out.print(((Element) bugInfo.item(j)).getAttribute("start") + ",");
+						System.out.print(((Element) bugInfo.item(j)).getAttribute("end") + ",");
+						System.out.println();
+					}
 				}
+
 			}
 		}
 

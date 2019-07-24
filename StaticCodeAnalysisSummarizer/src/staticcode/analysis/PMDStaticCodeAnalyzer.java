@@ -53,7 +53,7 @@ public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		System.out.println("PMD result");
 		System.out.println("Package," + "Classname," + "Startline," + "Endline," + "Error");
-		Document doc = builder.parse("../reports/report1.xml");
+		Document doc = builder.parse("../reports/pmd_report.xml");
 		NodeList fileList = doc.getElementsByTagName("file");
 
 		for (int i = 0; i < fileList.getLength(); i++) {
