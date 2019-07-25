@@ -19,53 +19,51 @@ import staticcode.analysis.StaticCodeAnalyzer;
 
 public class PMDStaticCodeAnalyzerTest {
 
-	
-	String pmdSourcePath;
-	String pmdOutputPath;
+	String sourceCodePath;
+	String resultsPath;
 	Map<String, String> optionsMap;
 	StaticCodeAnalyzer instance;
-	
-	
+
 	@Before
 	public void setUp() {
-		pmdSourcePath = "./src";
-		pmdOutputPath = "../reports/findbugs_report.xml";
+		sourceCodePath = "C:\\bootcamp\\java\\code\\MyTrainingProject";
+		resultsPath = "../reports/";
 		optionsMap = new HashMap<String, String>();
 		optionsMap.put("outputFormat", "xml");
-		instance =  new PMDStaticCodeAnalyzer(pmdSourcePath, pmdOutputPath, optionsMap);
+		optionsMap.put("ruleset", "rulesets/java/quickstart.xml");
+		instance = new PMDStaticCodeAnalyzer(sourceCodePath, resultsPath, optionsMap);
 	}
-	
-	
+
 	@Test
 	public void testGetCommand() {
 		System.out.println("running pmd testGetCommand");
+
+		String[] expectedCommand = { "cmd", "/c", "pmd", "-d", sourceCodePath, "-f", optionsMap.get("outputFormat"),
+				"-R", optionsMap.get("ruleset"), ">",
+				resultsPath + "pmd_report" + "." + optionsMap.get("outputFormat") };
 		
-		String[] expectedCommand = { "cmd", "/c", "pmd", "-d", pmdSourcePath, "-f", optionsMap.get("outputFormat"), "-R", "rulesets/java/quickstart.xml", ">", pmdOutputPath };
 		String[] actualCommand = instance.getCommand();
 		assertArrayEquals(expectedCommand, actualCommand);
 	}
 
-	
-	
-	@Test
-	public void testParseXMLToCSV() throws ParserConfigurationException, SAXException, IOException, InterruptedException {
-		
-		System.out.println("running pmd testParseXMLToCSV");
-		
-		ProcessBuilder pb = new ProcessBuilder();
-		Map<String, String> envMap = pb.environment();
-		String path = envMap.get("Path");
-		path += "../static-code-analyzers/pmd/bin;";
-		path += "../static-code-analyzers/findbugs/bin;";
-			
-		pb.command(instance.getCommand());
-		Process process = pb.start();
-		process.waitFor();
-		instance.parseXMLToCSV();
-		boolean check = new File("../reports/", "pmd_reports.csv").exists();
-		
-		//File f = new File("../reports/pmd_reports.csv");
-		assert(check);
-	}
+//	@Test
+//	public void testParseXMLToCSV()
+//			throws ParserConfigurationException, SAXException, IOException, InterruptedException {
+//
+//		System.out.println("running pmd testParseXMLToCSV");
+//		
+//		ProcessBuilder pb = new ProcessBuilder();
+//		Map<String, String> envMap = pb.environment();
+//		String path = envMap.get("Path");
+//		path += "../static-code-analyzers/pmd/bin;";
+//		path += "../static-code-analyzers/findbugs/bin;";
+//
+//		pb.command(instance.getCommand());
+//		Process process = pb.start();
+//		process.waitFor();
+//		instance.parseXMLToCSV();
+//		boolean check = new File("../reports/", "pmd_reports.csv").exists();
+//		assert (check);
+//	}
 
 }

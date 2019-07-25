@@ -20,24 +20,23 @@ import org.xml.sax.SAXException;
 public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
 	
-	public static final String CSV_OUTPUT_PATH = "../reports/pmd_report.csv";
+	private final String CSV_OUTPUT_PATH = "../reports/pmd_report.csv";
+	private String sourceCodePath;
+	private String resultsPath;
+	private Map<String, String> optionsMap;
 	
 	
-	/**
-	 * 
-	 * @param sourceCodePath - PMD expects src of project as input
-	 * @param resultsPath
-	 * @param optionsMap
-	 */
 	public PMDStaticCodeAnalyzer(String sourceCodePath, String resultsPath, Map<String, String> optionsMap) {
-		super(sourceCodePath, resultsPath, optionsMap);
+		this.sourceCodePath = sourceCodePath;
+		this.resultsPath = resultsPath + "pmd_report"+ "." + optionsMap.get("outputFormat");
+		this.optionsMap = optionsMap;	
 	}
 
 	@Override
 	public String[] getCommand() {
-
 		String[] command = { "cmd", "/c", "pmd", "-d", sourceCodePath, "-f", optionsMap.get("outputFormat"), "-R",
-				"rulesets/java/quickstart.xml", ">", resultsPath };
+				optionsMap.get("ruleset"), ">", resultsPath};
+		
 		return command;
 	}
 
@@ -52,8 +51,8 @@ public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		System.out.println("PMD result");
-		System.out.println("Package," + "Classname," + "Startline," + "Endline," + "Error");
-		Document doc = builder.parse("../reports/pmd_report.xml");
+		System.out.println("Error Type," + "Error Category," + "Classname," + "Startline," + "Endline,");
+		Document doc = builder.parse(this.resultsPath);
 		NodeList fileList = doc.getElementsByTagName("file");
 
 		for (int i = 0; i < fileList.getLength(); i++) {
@@ -66,11 +65,12 @@ public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 					Node n = violationList.item(j);
 					if (n.getNodeType() == Node.ELEMENT_NODE) {
 						Element violation = (Element) n;
-						System.out.print(violation.getAttribute("package") + ",");
+						System.out.print(violation.getAttribute("rule") + ",");
+						System.out.print(violation.getAttribute("ruleset") + ",");
 						System.out.print(violation.getAttribute("class") + ",");
 						System.out.print(violation.getAttribute("beginline") + ",");
 						System.out.print(violation.getAttribute("endline") + ",");
-						System.out.print(violation.getTextContent()+ ",");
+						//System.out.print(violation.getTextContent()+ ",");
 						System.out.println();
 					}
 				}
@@ -78,4 +78,5 @@ public class PMDStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
 		}
 	}
+
 }

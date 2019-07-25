@@ -14,24 +14,24 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import staticcode.analysis.FindbugsStaticCodeAnalyzer;
+import staticcode.analysis.PMDStaticCodeAnalyzer;
 import staticcode.analysis.StaticCodeAnalyzer;
 
 public class FindbugsStaticCodeAnalyzerTest {
 	
-	String findbugsSourcePath;
-	String findbugsOutputPath;
+	String sourceCodePath;
+	String resultsPath;
 	Map<String, String> optionsMap;
 	StaticCodeAnalyzer instance;
 	
 	
 	@Before
 	public void setUp() {
-	
-		findbugsSourcePath = ".";
-		findbugsOutputPath = "../reports/findbugs_report.xml";
+		sourceCodePath = ".";
+		resultsPath = "../reports/";
 		optionsMap = new HashMap<String, String>();
 		optionsMap.put("outputFormat", "xml");
-		instance =  new FindbugsStaticCodeAnalyzer(findbugsSourcePath, findbugsOutputPath, optionsMap);
+		instance =  new FindbugsStaticCodeAnalyzer(sourceCodePath, resultsPath, optionsMap);
 		
 	}
 	
@@ -43,29 +43,27 @@ public class FindbugsStaticCodeAnalyzerTest {
 		assertArrayEquals(expectedCommand, actualCommand);
 	}
 
-	@Test
-	public void testParseXMLToCSV() throws ParserConfigurationException, SAXException, IOException, InterruptedException {
-		
-		System.out.println("running findbugs testParseXMLToCSV");
-		
-		ProcessBuilder pb = new ProcessBuilder();
-		Map<String, String> envMap = pb.environment();
-		String path = envMap.get("Path");
-		path += "../static-code-analyzers/pmd/bin;";
-		path += "../static-code-analyzers/findbugs/bin;";
-			
-		pb.command(instance.getCommand());
-		Process process = pb.start();
-		process.waitFor();
-		
-		instance.parseXMLToCSV();
-		
-		boolean check = new File("../reports/", "findbugs_reports.csv").exists();
-		
-		//File f = new File("../reports/findbugs_reports.csv");
-		assert(check);
-		
-		
-	}
+//	@Test
+//	public void testParseXMLToCSV() throws ParserConfigurationException, SAXException, IOException, InterruptedException {
+//		
+//		System.out.println("running findbugs testParseXMLToCSV");
+//		
+//		ProcessBuilder pb = new ProcessBuilder();
+//		Map<String, String> envMap = pb.environment();
+//		String path = envMap.get("Path");
+//		path += "../static-code-analyzers/pmd/bin;";
+//		path += "../static-code-analyzers/findbugs/bin;";
+//			
+//		pb.command(instance.getCommand());
+//		Process process = pb.start();
+//		process.waitFor();
+//		instance.parseXMLToCSV();	
+//		boolean check = new File("../reports/", "findbugs_reports.csv").exists();
+//		
+//		//File f = new File("../reports/findbugs_reports.csv");
+//		assert(check);
+//		
+//		
+//	}
 
 }

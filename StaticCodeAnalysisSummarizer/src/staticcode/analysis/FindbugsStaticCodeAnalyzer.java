@@ -19,24 +19,25 @@ import org.xml.sax.SAXException;
 public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 
 	
-	public static final String CSV_OUTPUT_PATH = "../reports/findbugs_report.csv";
+	private final String CSV_OUTPUT_PATH = "../reports/findbugs_report.csv";
+	private String sourceCodePath;
+	private String resultsPath;
+	private Map<String, String> optionsMap;
 	
-	/**
-	 * 
-	 * @param sourceCodePath - findbugs expects project path
-	 * @param resultsPath
-	 * @param optionsMap
-	 */
+	
 	public FindbugsStaticCodeAnalyzer(String sourceCodePath, String resultsPath, Map<String, String> optionsMap) {
-		super(sourceCodePath, resultsPath, optionsMap);
+		
+		this.sourceCodePath = sourceCodePath;
+		this.resultsPath = resultsPath + "findbugs_report"+ "." + optionsMap.get("outputFormat");
+		this.optionsMap = optionsMap;
+		
 	}
 
 
 	@Override
 	public String[] getCommand() {
 
-		String[] command = { "cmd", "/c", "findbugs", "-textui", "-output", resultsPath, optionsMap.get("outputFormat"),
-				sourceCodePath };
+		String[] command = { "cmd", "/c", "findbugs", "-textui", "-output", resultsPath , optionsMap.get("outputFormat"), sourceCodePath};
 		return command;
 	}
 
@@ -53,10 +54,10 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse("../reports/findbugs_report.xml");
+		Document doc = builder.parse(this.resultsPath);
 		NodeList allBugs = doc.getElementsByTagName("BugInstance");
 		System.out.println("Findbugs Results");
-		System.out.println("Type," + "Category," + "Classname," + "Startline," + "Endline");
+		System.out.println("Error Type," + "Error Category," + "Classname," + "Startline," + "Endline");
 		
 		for (int i = 0; i < allBugs.getLength(); i++) {
 			Node bugInstance = allBugs.item(i);
@@ -65,16 +66,45 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 				System.out.print(bug.getAttribute("type") + ",");
 				System.out.print(bug.getAttribute("category") + ",");
 				NodeList bugInfo = bug.getChildNodes();
-
+				
+				String methodStartLine = null;
+				String methodEndLine = null;
+				String bugSourceLine = null;
+				String className = null;
+				boolean noSourceLineTag = true;
+				
 				for(int j=0; j < bugInfo.getLength(); j++) {
 					
-					if(bugInfo.item(j).getNodeName().equals("SourceLine")) {
-						System.out.print(((Element) bugInfo.item(j)).getAttribute("classname") + ",");
-						System.out.print(((Element) bugInfo.item(j)).getAttribute("start") + ",");
-						System.out.print(((Element) bugInfo.item(j)).getAttribute("end") + ",");
-						System.out.println();
+					if(bugInfo.item(j).getNodeType() == Node.ELEMENT_NODE){
+						Element currentNode = (Element) bugInfo.item(j);
+						if(currentNode.getNodeName().equals("Method")) {
+							NodeList methodInfo = currentNode.getChildNodes();
+							if(methodInfo.item(0).getNodeType() == Node.ELEMENT_NODE) {
+								methodStartLine = ((Element) methodInfo.item(0)).getAttribute("start");
+								methodEndLine = ((Element) methodInfo.item(0)).getAttribute("end");
+								className = ((Element) methodInfo.item(0)).getAttribute("classname");
+							}
+						}
+						
+						if(bugInfo.item(j).getNodeName().equals("SourceLine")) {
+							bugSourceLine = ((Element) bugInfo.item(j)).getAttribute("start");
+							className = ((Element) bugInfo.item(j)).getAttribute("classname");
+							noSourceLineTag = false;
+						}	
 					}
 				}
+				
+				System.out.print(className + ",");
+				if(noSourceLineTag) {
+					System.out.print(methodStartLine + ",");
+					System.out.print(methodEndLine + ",");
+				}
+				else {
+					System.out.print(bugSourceLine + ",");
+					System.out.print(bugSourceLine + ",");
+				}
+				
+			System.out.println();
 
 			}
 		}
