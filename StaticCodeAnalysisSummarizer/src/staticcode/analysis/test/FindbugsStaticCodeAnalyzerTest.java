@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
@@ -17,15 +18,26 @@ import staticcode.analysis.StaticCodeAnalyzer;
 
 public class FindbugsStaticCodeAnalyzerTest {
 	
+	String findbugsSourcePath;
+	String findbugsOutputPath;
+	Map<String, String> optionsMap;
+	StaticCodeAnalyzer instance;
+	
+	
+	@Before
+	public void setUp() {
+	
+		findbugsSourcePath = ".";
+		findbugsOutputPath = "../reports/findbugs_report.xml";
+		optionsMap = new HashMap<String, String>();
+		optionsMap.put("outputFormat", "xml");
+		instance =  new FindbugsStaticCodeAnalyzer(findbugsSourcePath, findbugsOutputPath, optionsMap);
+		
+	}
 	
 	@Test
 	public void testGetCommand() {
-		String findbugsSourcePath = ".";
-		String findbugsOutputPath = "../reports/findbugs_report.xml";
-		Map<String, String> optionsMap = new HashMap<String, String>();
-		optionsMap.put("outputFormat", "xml");
-		StaticCodeAnalyzer instance =  new FindbugsStaticCodeAnalyzer(findbugsSourcePath, findbugsOutputPath, optionsMap);
-		
+		System.out.println("running findbugs testGetCommand");
 		String[] expectedCommand = {"cmd" , "/c" , "findbugs" , "-textui" , "-output" , "../reports/findbugs_report.xml" , "xml" , "."};
 		String[] actualCommand = instance.getCommand();
 		assertArrayEquals(expectedCommand, actualCommand);
@@ -34,11 +46,7 @@ public class FindbugsStaticCodeAnalyzerTest {
 	@Test
 	public void testParseXMLToCSV() throws ParserConfigurationException, SAXException, IOException, InterruptedException {
 		
-		String findbugsSourcePath = ".";
-		String findbugsOutputPath = "../reports/findbugs_report.xml";
-		Map<String, String> optionsMap = new HashMap<String, String>();
-		optionsMap.put("outputFormat", "xml");
-		StaticCodeAnalyzer instance =  new FindbugsStaticCodeAnalyzer(findbugsSourcePath, findbugsOutputPath, optionsMap);
+		System.out.println("running findbugs testParseXMLToCSV");
 		
 		ProcessBuilder pb = new ProcessBuilder();
 		Map<String, String> envMap = pb.environment();

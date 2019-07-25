@@ -20,5 +20,5 @@ SE_COMPARATOR_SHOULD_BE_SERIALIZABLE,BAD_PRACTICE,SE_COMPARATOR_SHOULD_BE_SERIAL
 DM_DEFAULT_ENCODING,I18N,staticcode.analysis.PMDStaticCodeAnalyzer,46,46,
 IL_INFINITE_LOOP,CORRECTNESS,staticcode.analysis.SampleCode,8,8,
 staticcode.analysis.SampleCode,8,8,
-DLS_DEAD_LOCAL_STORE,STYLE,staticcode.analysis.test.FindbugsStaticCodeAnalyzerTest,47,47,
-DLS_DEAD_LOCAL_STORE,STYLE,staticcode.analysis.test.PMDStaticCodeAnalyzerTest,33,33,
+DLS_DEAD_LOCAL_STORE,STYLE,staticcode.analysis.test.FindbugsStaticCodeAnalyzerTest,49,49,
+DLS_DEAD_LOCAL_STORE,STYLE,staticcode.analysis.test.PMDStaticCodeAnalyzerTest,52,52,
