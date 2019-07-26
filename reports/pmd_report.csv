@@ -1,9 +1,9 @@
 PMD result
 Error Type,Error Category,Classname,Startline,Endline,
-UseUtilityClass,Design,Client,14,63,
+UseUtilityClass,Design,Client,14,47,
 CloseResource,Error Prone,Client,18,18,
 FinalFieldCouldBeStatic,Design,FindbugsStaticCodeAnalyzer,22,22,
-UnnecessaryLocalBeforeReturn,Code Style,FindbugsStaticCodeAnalyzer,41,41,
+UnnecessaryLocalBeforeReturn,Code Style,FindbugsStaticCodeAnalyzer,39,39,
 FinalFieldCouldBeStatic,Design,PMDStaticCodeAnalyzer,23,23,
 UnnecessaryLocalBeforeReturn,Code Style,PMDStaticCodeAnalyzer,40,40,
 UseUtilityClass,Design,SampleCode,3,18,

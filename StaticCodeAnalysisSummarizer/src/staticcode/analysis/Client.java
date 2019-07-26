@@ -40,24 +40,8 @@ public class Client {
 		analyzers.add(pmdAnalyzer);
 		analyzers.add(findbugsAnalyzer);
 		
-		ProcessBuilder pb = new ProcessBuilder();
-		Map<String, String> envMap = pb.environment();
-		String path = envMap.get("Path");
-		path += "../static-code-analyzers/pmd/bin;";
-		path += "../static-code-analyzers/findbugs/bin;";
-		envMap.put("Path", path);
+		StaticCodeAnalyzer.runAnalyzers(analyzers);
 		
-		
-		for (StaticCodeAnalyzer analyzer : analyzers) {
-			
-			pb.command(analyzer.getCommand());
-			Process process = pb.start();
-			process.waitFor();
-			analyzer.parseXMLToCSV();
-		
-		}
-		
-	   
 	}
 
 }

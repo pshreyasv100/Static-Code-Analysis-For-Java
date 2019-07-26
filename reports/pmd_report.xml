@@ -2,9 +2,9 @@
 <pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
-    version="6.16.0" timestamp="2019-07-26T05:21:59.405">
+    version="6.16.0" timestamp="2019-07-26T08:08:27.630">
 <file name="C:\bootcamp\bootcamp-casestudy-1\StaticCodeAnalysisSummarizer\StaticCodeAnalysisSummarizer\src\staticcode\analysis\Client.java">
-<violation beginline="14" endline="63" begincolumn="21" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="staticcode.analysis" class="Client" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_design.html#useutilityclass" priority="3">
+<violation beginline="14" endline="47" begincolumn="21" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="staticcode.analysis" class="Client" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_design.html#useutilityclass" priority="3">
 All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
 </violation>
 <violation beginline="18" endline="18" begincolumn="25" endcolumn="26" rule="CloseResource" ruleset="Error Prone" package="staticcode.analysis" class="Client" method="main" variable="sc" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
@@ -15,7 +15,7 @@ Ensure that resources like this Scanner object are closed after use
 <violation beginline="22" endline="22" begincolumn="48" endcolumn="79" rule="FinalFieldCouldBeStatic" ruleset="Design" package="staticcode.analysis" class="FindbugsStaticCodeAnalyzer" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_design.html#finalfieldcouldbestatic" priority="3">
 This final field could be made static
 </violation>
-<violation beginline="41" endline="41" begincolumn="17" endcolumn="31" rule="UnnecessaryLocalBeforeReturn" ruleset="Code Style" package="staticcode.analysis" class="FindbugsStaticCodeAnalyzer" method="getCommand" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_codestyle.html#unnecessarylocalbeforereturn" priority="3">
+<violation beginline="39" endline="39" begincolumn="17" endcolumn="31" rule="UnnecessaryLocalBeforeReturn" ruleset="Code Style" package="staticcode.analysis" class="FindbugsStaticCodeAnalyzer" method="getCommand" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_codestyle.html#unnecessarylocalbeforereturn" priority="3">
 Consider simply returning the value vs storing it in local variable 'command'
 </violation>
 </file>
