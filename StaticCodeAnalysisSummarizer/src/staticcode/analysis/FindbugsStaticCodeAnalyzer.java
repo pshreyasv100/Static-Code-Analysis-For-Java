@@ -26,11 +26,9 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 	
 	
 	public FindbugsStaticCodeAnalyzer(String sourceCodePath, String resultsPath, Map<String, String> optionsMap) {
-		
 		this.sourceCodePath = sourceCodePath;
 		this.resultsPath = resultsPath + "findbugs_report"+ "." + optionsMap.get("outputFormat");
-		this.optionsMap = optionsMap;
-		
+		this.optionsMap = optionsMap;	
 	}
 
 
@@ -67,8 +65,8 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 				System.out.print(bug.getAttribute("category") + ",");
 				NodeList bugInfo = bug.getChildNodes();
 				
-				String methodStartLine = null;
-				String methodEndLine = null;
+				String classStartLine = null;
+				String classEndLine = null;
 				String bugSourceLine = null;
 				String className = null;
 				boolean noSourceLineTag = true;
@@ -77,12 +75,16 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 					
 					if(bugInfo.item(j).getNodeType() == Node.ELEMENT_NODE){
 						Element currentNode = (Element) bugInfo.item(j);
-						if(currentNode.getNodeName().equals("Method")) {
-							NodeList methodInfo = currentNode.getChildNodes();
-							if(methodInfo.item(0).getNodeType() == Node.ELEMENT_NODE) {
-								methodStartLine = ((Element) methodInfo.item(0)).getAttribute("start");
-								methodEndLine = ((Element) methodInfo.item(0)).getAttribute("end");
-								className = ((Element) methodInfo.item(0)).getAttribute("classname");
+						if(currentNode.getNodeName().equals("Class")) {
+							NodeList classInfo = currentNode.getChildNodes();
+							
+							for(int k=0; k < classInfo.getLength(); k++) {
+								if(classInfo.item(k).getNodeType() == Node.ELEMENT_NODE) {
+									Element classInfoElement = (Element) classInfo.item(k);
+									classStartLine = classInfoElement.getAttribute("start");
+									classEndLine = classInfoElement.getAttribute("end");
+									className = classInfoElement.getAttribute("classname");
+								}				
 							}
 						}
 						
@@ -96,8 +98,8 @@ public class FindbugsStaticCodeAnalyzer extends StaticCodeAnalyzer {
 				
 				System.out.print(className + ",");
 				if(noSourceLineTag) {
-					System.out.print(methodStartLine + ",");
-					System.out.print(methodEndLine + ",");
+					System.out.print(classStartLine + ",");
+					System.out.print(classEndLine + ",");
 				}
 				else {
 					System.out.print(bugSourceLine + ",");

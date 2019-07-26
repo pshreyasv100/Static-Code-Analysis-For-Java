@@ -37,7 +37,7 @@ public class Client {
 		
 	  
 		List<StaticCodeAnalyzer> analyzers = new ArrayList<StaticCodeAnalyzer>();
-		analyzers.add(pmdAnalyzer);
+//		analyzers.add(pmdAnalyzer);
 		analyzers.add(findbugsAnalyzer);
 		
 		ProcessBuilder pb = new ProcessBuilder();
