@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -46,24 +48,17 @@ public class PMDStaticCodeAnalyzerTest {
 		assertArrayEquals(expectedCommand, actualCommand);
 	}
 
-//	@Test
-//	public void testParseXMLToCSV()
-//			throws ParserConfigurationException, SAXException, IOException, InterruptedException {
-//
-//		System.out.println("running pmd testParseXMLToCSV");
-//		
-//		ProcessBuilder pb = new ProcessBuilder();
-//		Map<String, String> envMap = pb.environment();
-//		String path = envMap.get("Path");
-//		path += "../static-code-analyzers/pmd/bin;";
-//		path += "../static-code-analyzers/findbugs/bin;";
-//
-//		pb.command(instance.getCommand());
-//		Process process = pb.start();
-//		process.waitFor();
-//		instance.parseXMLToCSV();
-//		boolean check = new File("../reports/", "pmd_reports.csv").exists();
-//		assert (check);
-//	}
+	@Test
+	public void testParseXMLToCSV()
+			throws ParserConfigurationException, SAXException, IOException, InterruptedException {
+
+		System.out.println("running pmd testParseXMLToCSV");
+		List<StaticCodeAnalyzer> analyzers = new ArrayList<StaticCodeAnalyzer>();
+		analyzers.add(instance);		
+		StaticCodeAnalyzer.runAnalyzers(analyzers);
+		
+		boolean check = new File("../reports/", "pmd_reports.csv").exists();
+		assert (check);
+	}
 
 }

@@ -21,8 +21,7 @@ public class Client {
 	    String resultsDirectory = "../reports/";
 	    
 	    System.out.println("Running static code analyzers ...");
-	    System.out.println("Reports generated are stored in reports directory");
-	
+	    System.out.println("Reports generated are stored in reports directory");	
 	    
 	    //Instantiating PMD
 		Map<String, String> optionsMapPMD = new HashMap<String, String>();
@@ -33,8 +32,7 @@ public class Client {
 		//Instantiating Findbugs
 		Map<String, String> optionsMapFindbugs = new HashMap<String, String>();
 		optionsMapFindbugs.put("outputFormat", "xml");
-		StaticCodeAnalyzer findbugsAnalyzer = new FindbugsStaticCodeAnalyzer(srcProjectDirectory, resultsDirectory, optionsMapFindbugs);
-		
+		StaticCodeAnalyzer findbugsAnalyzer = new FindbugsStaticCodeAnalyzer(srcProjectDirectory, resultsDirectory, optionsMapFindbugs);	
 	  
 		List<StaticCodeAnalyzer> analyzers = new ArrayList<StaticCodeAnalyzer>();
 		analyzers.add(pmdAnalyzer);
