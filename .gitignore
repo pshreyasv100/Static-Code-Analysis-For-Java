@@ -1,4 +1,7 @@
 .metadata
+.settings 
+.classpath 
+.project
 static-code-analyzers/*
 !static-code-analyzers/.gitkeep
 bin/

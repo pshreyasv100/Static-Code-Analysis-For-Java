@@ -1,4 +1,4 @@
-package staticcodeanalysis;
+package staticcode.analysis;
 
 public class SampleCode {
 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
+    version="6.16.0" timestamp="2019-07-26T08:08:27.630">
+<file name="C:\bootcamp\bootcamp-casestudy-1\StaticCodeAnalysisSummarizer\StaticCodeAnalysisSummarizer\src\staticcode\analysis\Client.java">
+<violation beginline="14" endline="47" begincolumn="21" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="staticcode.analysis" class="Client" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_design.html#useutilityclass" priority="3">
+All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="18" endline="18" begincolumn="25" endcolumn="26" rule="CloseResource" ruleset="Error Prone" package="staticcode.analysis" class="Client" method="main" variable="sc" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this Scanner object are closed after use
+</violation>
+</file>
+<file name="C:\bootcamp\bootcamp-casestudy-1\StaticCodeAnalysisSummarizer\StaticCodeAnalysisSummarizer\src\staticcode\analysis\FindbugsStaticCodeAnalyzer.java">
+<violation beginline="22" endline="22" begincolumn="48" endcolumn="79" rule="FinalFieldCouldBeStatic" ruleset="Design" package="staticcode.analysis" class="FindbugsStaticCodeAnalyzer" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_design.html#finalfieldcouldbestatic" priority="3">
+This final field could be made static
+</violation>
+<violation beginline="39" endline="39" begincolumn="17" endcolumn="31" rule="UnnecessaryLocalBeforeReturn" ruleset="Code Style" package="staticcode.analysis" class="FindbugsStaticCodeAnalyzer" method="getCommand" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_codestyle.html#unnecessarylocalbeforereturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'command'
+</violation>
+</file>
+<file name="C:\bootcamp\bootcamp-casestudy-1\StaticCodeAnalysisSummarizer\StaticCodeAnalysisSummarizer\src\staticcode\analysis\PMDStaticCodeAnalyzer.java">
+<violation beginline="23" endline="23" begincolumn="48" endcolumn="74" rule="FinalFieldCouldBeStatic" ruleset="Design" package="staticcode.analysis" class="PMDStaticCodeAnalyzer" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_design.html#finalfieldcouldbestatic" priority="3">
+This final field could be made static
+</violation>
+<violation beginline="40" endline="40" begincolumn="17" endcolumn="31" rule="UnnecessaryLocalBeforeReturn" ruleset="Code Style" package="staticcode.analysis" class="PMDStaticCodeAnalyzer" method="getCommand" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_codestyle.html#unnecessarylocalbeforereturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'command'
+</violation>
+</file>
+<file name="C:\bootcamp\bootcamp-casestudy-1\StaticCodeAnalysisSummarizer\StaticCodeAnalysisSummarizer\src\staticcode\analysis\SampleCode.java">
+<violation beginline="3" endline="18" begincolumn="25" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="staticcode.analysis" class="SampleCode" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_design.html#useutilityclass" priority="3">
+All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="8" endline="10" begincolumn="32" endcolumn="17" rule="EmptyWhileStmt" ruleset="Error Prone" package="staticcode.analysis" class="SampleCode" method="main" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_errorprone.html#emptywhilestmt" priority="3">
+Avoid empty while statements
+</violation>
+<violation beginline="12" endline="12" begincolumn="21" endcolumn="21" rule="UnusedLocalVariable" ruleset="Best Practices" package="staticcode.analysis" class="SampleCode" method="main" variable="j" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'j'.
+</violation>
+</file>
+<file name="C:\bootcamp\bootcamp-casestudy-1\StaticCodeAnalysisSummarizer\StaticCodeAnalysisSummarizer\src\staticcode\analysis\test\FindbugsStaticCodeAnalyzerTest.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="33" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="FindbugsStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'org.junit.Assert'
+</violation>
+<violation beginline="5" endline="5" begincolumn="1" endcolumn="20" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="FindbugsStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.io.File'
+</violation>
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="27" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="FindbugsStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.io.IOException'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="54" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="FindbugsStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'javax.xml.parsers.ParserConfigurationException'
+</violation>
+<violation beginline="14" endline="14" begincolumn="1" endcolumn="32" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="FindbugsStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'org.xml.sax.SAXException'
+</violation>
+<violation beginline="17" endline="17" begincolumn="1" endcolumn="49" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="FindbugsStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'staticcode.analysis.PMDStaticCodeAnalyzer'
+</violation>
+</file>
+<file name="C:\bootcamp\bootcamp-casestudy-1\StaticCodeAnalysisSummarizer\StaticCodeAnalysisSummarizer\src\staticcode\analysis\test\PMDStaticCodeAnalyzerTest.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="33" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="PMDStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'org.junit.Assert'
+</violation>
+<violation beginline="5" endline="5" begincolumn="1" endcolumn="20" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="PMDStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.io.File'
+</violation>
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="27" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="PMDStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.io.IOException'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="54" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="PMDStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'javax.xml.parsers.ParserConfigurationException'
+</violation>
+<violation beginline="14" endline="14" begincolumn="1" endcolumn="32" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="PMDStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'org.xml.sax.SAXException'
+</violation>
+<violation beginline="16" endline="16" begincolumn="1" endcolumn="54" rule="UnusedImports" ruleset="Best Practices" package="staticcode.analysis.test" class="PMDStaticCodeAnalyzerTest" externalInfoUrl="https://pmd.github.io/pmd-6.16.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'staticcode.analysis.FindbugsStaticCodeAnalyzer'
+</violation>
+</file>
+</pmd>
